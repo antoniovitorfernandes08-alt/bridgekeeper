@@ -47,6 +47,41 @@ A API fica acessível em `http://localhost:8080`.
 
 ---
 
+## Como Trabalhar Neste Repositório
+
+**1. Faça um fork** do repositório pelo GitHub (botão "Fork" no canto superior direito).
+
+**2. Clone o seu fork:**
+```bash
+git clone https://github.com/<seu-usuario>/bridgekeeper.git
+cd bridgekeeper
+```
+
+**3. Acesse a branch do seu time** (ela já existe no repositório):
+```bash
+# Red Team
+git checkout redteam/hardening
+
+# Blue Team
+git checkout blueteam/monitoring
+```
+
+**4. Suba o ambiente:**
+```bash
+docker compose up --build
+```
+
+**5. Salve suas evidências** na pasta do time (`redteam/evidence/` ou `blueteam/evidence/`) e commite:
+```bash
+git add redteam/evidence/
+git commit -m "feat: adiciona script de exploração"
+git push origin redteam/hardening
+```
+
+**6.** Ao final, abra um **Pull Request** do seu fork para o repositório original, na branch do seu time.
+
+---
+
 ## Times e Branches
 
 | Time | Branch | Guia |
@@ -66,7 +101,7 @@ git checkout -b blueteam/monitoring
 
 ## Regras do Lab
 
-- A branch `main` é o ponto de partida — não altere o código nela.
+- A branch `master` é o ponto de partida — não altere o código nela.
 - Cada time trabalha exclusivamente na sua branch.
 - Evidências (scripts, relatórios, prints) devem ser salvas na pasta do time e commitadas na sua branch:
   - Red Team → `redteam/evidence/`

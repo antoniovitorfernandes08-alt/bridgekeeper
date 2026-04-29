@@ -97,6 +97,18 @@ Integrantes : ___________________________
 
 ---
 
+## Conceitos para a Apresentação
+
+A apresentação do time deve explicar, no mínimo, os seguintes conceitos:
+
+- **OWASP API Top 10** — o que é, qual a posição do BOLA nessa lista e por que ele é considerado a vulnerabilidade mais crítica em APIs
+- **BOLA (Broken Object Level Authorization)** — como a vulnerabilidade funciona tecnicamente: o que falta no código, por que IDs sequenciais agravam o problema e como um atacante a explora
+- **LGPD** — o que caracteriza um vazamento de dados pessoais e em quais situações ele precisa ser reportado
+- **Rate Limiting** — o que é, como o `limit_req_zone` funciona no NGINX e qual a diferença entre **mitigar** e **corrigir** uma vulnerabilidade
+- **Evasão de controles** — o que são técnicas de evasão (ex: rotação de User-Agent) e por que controles baseados apenas em IP têm limitações
+
+---
+
 ## Checklist de Entrega
 
 - [ ] Script de exploração em `redteam/evidence/`

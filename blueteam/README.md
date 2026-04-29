@@ -119,6 +119,19 @@ Integrantes : ___________________________
 
 ---
 
+## Conceitos para a Apresentação
+
+A apresentação do time deve explicar, no mínimo, os seguintes conceitos:
+
+- **OWASP API Top 10** — o que é e como usar a lista para classificar e comunicar o risco de um incidente em um contexto organizacional
+- **BOLA (Broken Object Level Authorization)** — o impacto organizacional da vulnerabilidade: quais dados foram expostos, quem é afetado e o que isso representa para a empresa
+- **Log estruturado e observabilidade** — o que é um log estruturado (JSON), por que ele facilita a detecção de ataques e o que é o conceito de observabilidade
+- **MTTD (Mean Time to Detect)** — o que é o tempo médio de detecção e por que ele é uma métrica crítica de segurança
+- **LGPD** — as obrigações legais em caso de vazamento: prazo de comunicação à ANPD, notificação de titulares e cálculo de multa (Art. 52)
+- **Frameworks de Governança** — o que são NIST CSF e ISO 27001 e como eles estruturam a resposta a incidentes
+
+---
+
 ## Checklist de Entrega
 
 - [ ] Dashboard ou relatório de análise do `access.log` em `blueteam/evidence/`
