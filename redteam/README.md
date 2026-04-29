@@ -20,7 +20,9 @@ O script deve identificar quais pedidos pertencem ao usuário autenticado e quai
 
 **Ferramentas sugeridas:** Python (`requests`), Postman (Runner com iteração de IDs), curl.
 
-**Entregável:** arquivo de evidência (JSON ou CSV) com todos os pedidos coletados, indicando o `userId` real de cada um.
+**Entregáveis:**
+- Script de exploração em `redteam/evidence/`
+- Relatório de ataque preenchido (ver template abaixo)
 
 ---
 
@@ -28,28 +30,80 @@ O script deve identificar quais pedidos pertencem ao usuário autenticado e quai
 
 Com o ataque documentado, implemente rate limiting no NGINX para barrar automações de alta velocidade.
 
-**Sua missão:** configurar o módulo `limit_req_zone` no arquivo `proxy/nginx.conf` para limitar o número de requisições por IP na rota `/orders/`. A configuração deve ser ativada nesta branch — ela está comentada no `main` intencionalmente.
+**Sua missão:** configurar o módulo `limit_req_zone` no arquivo `proxy/nginx.conf` para limitar o número de requisições por IP na rota `/orders/`. Após ativar, re-execute o script da Fase 1 e confirme que as respostas HTTP 429 aparecem nos logs.
 
-Após ativar, re-execute o script da Fase 1 e confirme que as respostas HTTP 429 aparecem nos logs.
-
-**Entregável:** `proxy/nginx.conf` funcional com o rate limiting ativo e um breve relatório comparando o comportamento antes e depois (quantidade de respostas 200 vs. 429).
+**Entregáveis:**
+- `proxy/nginx.conf` com rate limiting ativo
+- Relatório de ataque atualizado com os resultados antes e depois do hardening
 
 ---
 
 ## Desafio Extra
 
-Após implementar o rate limiting, tente contorná-lo usando cabeçalhos `User-Agent` rotativos ou IPs distintos. O bloqueio por IP é suficiente para impedir o ataque? Documente a conclusão.
+Após implementar o rate limiting, tente contorná-lo usando cabeçalhos `User-Agent` rotativos ou IPs distintos. O bloqueio por IP é suficiente para impedir o ataque? Documente a conclusão no relatório.
+
+---
+
+## Template — Relatório de Ataque
+
+Salve como `redteam/evidence/relatorio-ataque.md`.
+
+```
+RELATÓRIO DE ATAQUE
+===================
+
+Time        : Red Team
+Data/Hora   : ____-__-__ __:__
+Integrantes : ___________________________
+
+1. DESCRIÇÃO DO ATAQUE
+   ───────────────────
+   Rota explorada  : 
+   Método utilizado: 
+   Ferramenta      : 
+
+2. EXECUÇÃO
+   ────────
+   Total de requisições enviadas : 
+   Período de execução           : __:__ até __:__
+   IDs acessados                 : de ___ até ___
+   Pedidos de outros usuários encontrados: ___
+
+3. RESULTADOS — ANTES DO HARDENING
+   ─────────────────────────────────
+   Respostas HTTP 200 : 
+   Respostas HTTP 404 : 
+   Dados coletados    : [ ] JSON  [ ] CSV  [ ] Outro: ___
+
+4. HARDENING IMPLEMENTADO
+   ───────────────────────
+   Configuração aplicada (resumo):
+
+   Rate definido  : 
+   Burst definido : 
+
+5. RESULTADOS — APÓS O HARDENING
+   ────────────────────────────────
+   Respostas HTTP 200 : 
+   Respostas HTTP 429 : 
+   O ataque foi mitigado? [ ] Sim  [ ] Parcialmente  [ ] Não
+
+6. CONCLUSÃO
+   ──────────
+   O rate limiting resolve a vulnerabilidade ou apenas a mitiga?
+
+   (Extra) Foi possível contornar o rate limiting? Como?
+```
 
 ---
 
 ## Checklist de Entrega
 
-- [ ] Script de exploração executado e evidência salva
-- [ ] Print do `logs/access.log` durante o ataque (antes do hardening)
-- [ ] `proxy/nginx.conf` com rate limiting ativo e comentado
+- [ ] Script de exploração em `redteam/evidence/`
+- [ ] Relatório de ataque preenchido em `redteam/evidence/`
+- [ ] `proxy/nginx.conf` com rate limiting ativo
 - [ ] Confirmação de respostas HTTP 429 nos logs
-- [ ] Resposta à pergunta: *o rate limiting resolve a vulnerabilidade BOLA ou apenas a mitiga?*
-- [ ] (Extra) Documentação da tentativa de bypass
+- [ ] (Extra) Documentação da tentativa de bypass no relatório
 
 ---
 
